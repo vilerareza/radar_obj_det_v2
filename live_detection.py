@@ -70,10 +70,11 @@ def start_detection_efficientdet(cam,
                 if score >= score_thres:
                     confident_detection_idx.append(idx)
     
+            print (confident_detection_idx)
+            
             for idx in confident_detection_idx:
-                
+
                 print (f'{(id2name_dict[class_id[idx]]).strip()}, Score: {scores[idx]}')
-                print (f'Class name does not exist for label ID {class_id[idx]}') 
                 # Draw the detection result
                 frame_ori = visualize(frame_ori, 
                                       bboxes[idx], 
@@ -243,7 +244,7 @@ if __name__ == '__main__':
         exit()
 
     '''Detection score threshold'''
-    det_score_thres = 0.6
+    det_score_thres = 0.3
     
     '''Path to id to label file'''
     labelmap_path = 'labelmap.txt'
