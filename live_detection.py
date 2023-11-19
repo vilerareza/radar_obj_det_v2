@@ -63,7 +63,6 @@ def start_detection_efficientdet(cam,
             # Detection scores
             scores = detector.get_tensor(detector_output[0]['index'])[0]
             scores = [round(score, 2) for score in scores]
-            print (scores)
 
             if len(bboxes) > 0:
 
