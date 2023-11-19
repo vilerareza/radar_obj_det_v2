@@ -59,31 +59,30 @@ def start_detection_efficientdet(cam,
             # Bounding boxes coordinates
             bboxes = detector.get_tensor(detector_output[1]['index'])[0]
             # Detected objects class ID
-            class_id = detector.get_tensor(detector_output[3]['index'])[0]
+            class_ids = detector.get_tensor(detector_output[3]['index'])[0]
             # Detection scores
             scores = detector.get_tensor(detector_output[0]['index'])[0]
             scores = [round(score, 2) for score in scores]
 
-            # Check the confidence based on score threshold
-            confident_detection_idx = []
-            for idx, score in enumerate(scores):
-                if score >= score_thres:
-                    confident_detection_idx.append(idx)
+            # # Check the confidence based on score threshold
+            # confident_detection_idx = []
+            # for idx, score in enumerate(scores):
+            #     if score >= score_thres:
+            #         confident_detection_idx.append(idx)
     
-            print (confident_detection_idx)
-            
-            for idx in confident_detection_idx:
+            # print (confident_detection_idx)
 
-                print (f'{(id2name_dict[class_id[idx]]).strip()}, Score: {scores[idx]}')
+            if len(bboxes) > 0:
+
                 # Draw the detection result
                 frame_ori = visualize(frame_ori, 
-                                      bboxes[idx], 
-                                      class_id[idx], 
-                                      scores[idx], 
-                                      score_thres, 
-                                      id2name_dict, 
-                                      color='rgb',
-                                      model_type='efficientdet')
+                                    bboxes, 
+                                    class_ids, 
+                                    scores, 
+                                    score_thres, 
+                                    id2name_dict, 
+                                    color='rgb',
+                                    model_type='efficientdet')
         
             frame_ori = frame_ori[:,:,::-1]
 
