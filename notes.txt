@@ -1,0 +1,28 @@
+# Instruction for running on Raspberry print
+
+1. Install the requirements: pip install -r requirements.txt
+
+2. To test the object detection model on single image, run test_detect.py: python test_detect.py
+    Adjust the following variables:
+
+        * model_path: path to the tflite model to use.
+        * input_size: Input size of selected tflite model:
+            efficient_Det_0.tflite -> (320, 320)
+            efficient_Det_1.tflite -> (384, 384)
+            efficient_Det_4.tflite -> (640, 640)
+        * test_image_path: path to the test image file
+        * test_image_bbox_path: path for the resulting detection image (with bounding box)
+        * score_threshold: detection confidence threshold
+
+3. To test the object detection model on single image, run rpi_detection.py: python rpi_detection.py
+    Adjust the following variables:
+
+        * is_flip: Set this to True or False depending on your camera orientation. Try this by experiment.
+        * model_path: path to the tflite model to use.
+        * input_size: Input size of selected tflite model:
+            efficient_Det_0.tflite -> (320, 320)
+            efficient_Det_1.tflite -> (384, 384)
+            efficient_Det_4.tflite -> (640, 640)
+        * test_image_path: path to the test image file
+        * test_image_bbox_path: path for the resulting detection image (with bounding box)
+        * score_threshold: detection confidence threshold
