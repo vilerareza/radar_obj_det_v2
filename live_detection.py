@@ -171,22 +171,24 @@ def start_detection_retinanet(cam,
             # Bounding boxes coordinates
             bboxes = detector.get_tensor(detector_output[1]['index'])[0]
             # Detected objects class ID
-            class_id = detector.get_tensor(detector_output[2]['index'])[0]
-            class_id -= 1 
+            class_ids = detector.get_tensor(detector_output[2]['index'])[0]
+            class_ids -= 1 
             # Detection scores
             scores = detector.get_tensor(detector_output[3]['index'])[0]
+            scores = [round(score, 2) for score in scores]
 
-            if len(bboxes) != 0:
-                for i in range(len(bboxes)):
-                    score = round(scores[i], 2)
-                    if score >= score_thres:
-                        try:
-                            print (f'{(id2name_dict[class_id[i]]).strip()}, Score: {score}')
-                        except:
-                            print (f'Class name does not exist for label ID {class_id[i]}') 
-            
-            # Draw the detection result
-            frame_ori = visualize(frame_ori, bboxes, class_id, scores, score_thres, id2name_dict, color='rgb')
+            if len(bboxes) > 0:
+
+                # Draw the detection result
+                frame_ori = visualize(frame_ori, 
+                                    bboxes, 
+                                    class_ids, 
+                                    scores, 
+                                    score_thres, 
+                                    id2name_dict, 
+                                    color='rgb',
+                                    model_type='retinanet')
+
             frame_ori = frame_ori[:,:,::-1]
 
             # Display the resulting frame
@@ -225,11 +227,11 @@ if __name__ == '__main__':
     
     '''Detection model'''
     # Path to tflite model
-    model_path = 'models_tflite/efficientdet_640.tflite'
+    model_path = 'models_tflite/retinanet_resnet_fpn_640_freeze.tflite'
     # Model input size
     input_size = (640, 640)
     # Model type
-    model_type = 'efficientdet'
+    model_type = 'retinanet'
     if model_type not in ['efficientdet', 'retinanet']:
         print (' Model type not supported')
         exit()
