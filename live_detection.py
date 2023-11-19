@@ -63,11 +63,12 @@ def start_detection_efficientdet(cam,
             # Detection scores
             scores = detector.get_tensor(detector_output[0]['index'])[0]
 
+            scores = [round(score, 2) for score in score]
+
             if len(bboxes) != 0:
                 for i in range(len(bboxes)):
-                    score = round(scores[i], 2)
-                    if score >= score_thres:
-                        print ('True', score, score_thres)
+                    if scores[i] >= score_thres:
+                        print ('True', scores[i], score_thres)
                         try:
                             print (f'{(id2name_dict[class_id[i]]).strip()}, Score: {score}')
                         except:
@@ -234,7 +235,7 @@ if __name__ == '__main__':
         exit()
 
     '''Detection score threshold'''
-    det_score_thres = 0.4
+    det_score_thres = 0.6
     
     '''Path to id to label file'''
     labelmap_path = 'labelmap.txt'
