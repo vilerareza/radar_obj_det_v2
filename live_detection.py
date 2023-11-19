@@ -71,9 +71,9 @@ def start_detection_efficientdet(cam,
                             print (f'{(id2name_dict[class_id[i]]).strip()}, Score: {score}')
                         except:
                             print (f'Class name does not exist for label ID {class_id[i]}') 
+                        # Draw the detection result
+                        frame_ori = visualize(frame_ori, bboxes, class_id, scores, score_thres, id2name_dict, color='rgb')
             
-            # Draw the detection result
-            frame_ori = visualize(frame_ori, bboxes, class_id, scores, score_thres, id2name_dict, color='rgb')
             frame_ori = frame_ori[:,:,::-1]
 
             # Display the resulting frame

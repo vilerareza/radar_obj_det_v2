@@ -79,6 +79,7 @@ def visualize(img, bboxes, class_id, scores, score_thres, label_dict, color='bgr
       # Draw label and score
       class_name = (label_dict[class_id[i]]).strip()
       score = round(scores[i], 2)
+      print (score)
       result_text = f'{class_name}: {score}'
       text_location = (_MARGIN + int(bboxes[i][1]*factor_w),
                       _MARGIN + _ROW_SIZE + int(bboxes[i][0]*factor_h))
