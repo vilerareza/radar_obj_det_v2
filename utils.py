@@ -48,7 +48,7 @@ def visualize(img, bboxes, class_id, scores, score_thres, label_dict, color='bgr
 
          try:
 
-            print (label_dict[class_id[i]])
+            print (label_dict[class_id[i]], scores[i])
 
             if class_id[i] == 0:
                if color == 'bgr':
