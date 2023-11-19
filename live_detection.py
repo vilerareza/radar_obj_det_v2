@@ -65,7 +65,9 @@ def start_detection_efficientdet(cam,
 
             if len(bboxes) != 0:
                 for i in range(len(bboxes)):
+                    print (scores[i])
                     score = round(scores[i], 2)
+                    print (score)
                     if score >= score_thres:
                         try:
                             print (f'{(id2name_dict[class_id[i]]).strip()}, Score: {score}')
