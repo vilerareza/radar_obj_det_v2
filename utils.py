@@ -46,47 +46,47 @@ def visualize(img, bboxes, class_id, scores, score_thres, label_dict, color='bgr
 
       if scores[i] >= score_thres:
 
-         try:
+         #try:
 
-            print (label_dict[class_id[i]], scores[i])
+         print (label_dict[class_id[i]], scores[i])
 
-            if class_id[i] == 0:
-               if color == 'bgr':
-                  annotation_color = color_green_bgr
-               else:
-                  annotation_color = color_green
-            elif class_id[i] == 1:
-               if color == 'bgr':
-                  annotation_color = color_yellow_bgr
-               else:
-                  annotation_color = color_yellow
-            elif class_id[i] == 2:
-               if color == 'bgr':
-                  annotation_color = color_blue_bgr
-               else:
-                  annotation_color = color_blue
+         if class_id[i] == 0:
+            if color == 'bgr':
+               annotation_color = color_green_bgr
             else:
-               if color == 'bgr':
-                  annotation_color = color_red_bgr
-               else:
-                  annotation_color = color_red
-            
-            # Draw bounding_box
-            start_point = (int(bboxes[i][1]*factor_w), int(bboxes[i][0]*factor_h))
-            end_point = int(bboxes[i][3]*factor_w ), int(bboxes[i][2]*factor_h)
-            cv2.rectangle(img, start_point, end_point, annotation_color, 2)
+               annotation_color = color_green
+         elif class_id[i] == 1:
+            if color == 'bgr':
+               annotation_color = color_yellow_bgr
+            else:
+               annotation_color = color_yellow
+         elif class_id[i] == 2:
+            if color == 'bgr':
+               annotation_color = color_blue_bgr
+            else:
+               annotation_color = color_blue
+         else:
+            if color == 'bgr':
+               annotation_color = color_red_bgr
+            else:
+               annotation_color = color_red
+         
+         # Draw bounding_box
+         start_point = (int(bboxes[i][1]*factor_w), int(bboxes[i][0]*factor_h))
+         end_point = int(bboxes[i][3]*factor_w ), int(bboxes[i][2]*factor_h)
+         cv2.rectangle(img, start_point, end_point, annotation_color, 2)
 
-            # Draw label and score
-            class_name = (label_dict[class_id[i]]).strip()
-            result_text = f'{class_name}: {str(scores[i][:4])}'
-            text_location = (_MARGIN + int(bboxes[i][1]*factor_w),
-                           _MARGIN + _ROW_SIZE + int(bboxes[i][0]*factor_h))
-            cv2.putText(img, result_text, text_location, cv2.FONT_HERSHEY_PLAIN,
-                        _FONT_SIZE, annotation_color, _FONT_THICKNESS)
+         # Draw label and score
+         class_name = (label_dict[class_id[i]]).strip()
+         result_text = f'{class_name}: {str(scores[i][:4])}'
+         text_location = (_MARGIN + int(bboxes[i][1]*factor_w),
+                        _MARGIN + _ROW_SIZE + int(bboxes[i][0]*factor_h))
+         cv2.putText(img, result_text, text_location, cv2.FONT_HERSHEY_PLAIN,
+                     _FONT_SIZE, annotation_color, _FONT_THICKNESS)
             
-         except:
+         #except:
             
-            print (f'Class name does not exist for label ID {class_id[i]}') 
+         #   print (f'Class name does not exist for label ID {class_id[i]}') 
 
    return img
 
