@@ -227,7 +227,7 @@ if __name__ == '__main__':
     
     '''Detection model'''
     # Path to tflite model
-    model_path = 'models_tflite/retinanet_resnet_fpn_640_freeze.tflite'
+    model_path = 'models_tflite/retinanet_resnet_fpn_640_unfreeze.tflite'
     # Model input size
     input_size = (640, 640)
     # Model type
