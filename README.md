@@ -41,7 +41,7 @@ Adjust the following variables:
 * is_flip: Set this to True or False depending on your camera orientation. Try this by experiment.
 * model_path: path to the tflite model to use.
 * input_size: Input size of selected tflite model:
-* model_type: type 'efficientdet' or 'retinanet' accordint to selected tflite model
+* model_type: type 'efficientdet' or 'retinanet' according to selected tflite model
 * det_score_threshold: detection confidence threshold. Based on my observation, for efficientdet: Try 0.6-0.7, for retinanet: Try 0.5-0.6.
 
 
