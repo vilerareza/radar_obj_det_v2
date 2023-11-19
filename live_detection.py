@@ -62,20 +62,28 @@ def start_detection_efficientdet(cam,
             class_id = detector.get_tensor(detector_output[3]['index'])[0]
             # Detection scores
             scores = detector.get_tensor(detector_output[0]['index'])[0]
-
             scores = [round(score, 2) for score in scores]
 
-            if len(bboxes) != 0:
-                for i in range(len(bboxes)):
-                    if scores[i] >= score_thres:
-                        print ('True', scores[i], score_thres)
-                        try:
-                            print (f'{(id2name_dict[class_id[i]]).strip()}, Score: {scores[i]}')
-                        except:
-                            print (f'Class name does not exist for label ID {class_id[i]}') 
-                        # Draw the detection result
-                        frame_ori = visualize(frame_ori, bboxes, class_id, scores, score_thres, id2name_dict, color='rgb')
-            
+            # Check the confidence based on score threshold
+            confident_detection_idx = []
+            for idx, score in enumerate(scores):
+                if score >= score_thres:
+                    confident_detection_idx.append(idx)
+    
+            for idx in confident_detection_idx:
+                
+                print (f'{(id2name_dict[class_id[idx]]).strip()}, Score: {scores[idx]}')
+                print (f'Class name does not exist for label ID {class_id[idx]}') 
+                # Draw the detection result
+                frame_ori = visualize(frame_ori, 
+                                      bboxes[idx], 
+                                      class_id[idx], 
+                                      scores[idx], 
+                                      score_thres, 
+                                      id2name_dict, 
+                                      color='rgb',
+                                      model_type='efficientdet')
+        
             frame_ori = frame_ori[:,:,::-1]
 
             # Display the resulting frame
