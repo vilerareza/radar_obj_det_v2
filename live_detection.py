@@ -236,7 +236,7 @@ if __name__ == '__main__':
         exit()
 
     '''Detection score threshold'''
-    det_score_thres = 0.7
+    det_score_thres = 0.6
     
     '''Path to id to label file'''
     labelmap_path = 'labelmap.txt'
