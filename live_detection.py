@@ -63,14 +63,14 @@ def start_detection_efficientdet(cam,
             # Detection scores
             scores = detector.get_tensor(detector_output[0]['index'])[0]
 
-            scores = [round(score, 2) for score in score]
+            scores = [round(score, 2) for score in scores]
 
             if len(bboxes) != 0:
                 for i in range(len(bboxes)):
                     if scores[i] >= score_thres:
                         print ('True', scores[i], score_thres)
                         try:
-                            print (f'{(id2name_dict[class_id[i]]).strip()}, Score: {score}')
+                            print (f'{(id2name_dict[class_id[i]]).strip()}, Score: {scores[i]}')
                         except:
                             print (f'Class name does not exist for label ID {class_id[i]}') 
                         # Draw the detection result
