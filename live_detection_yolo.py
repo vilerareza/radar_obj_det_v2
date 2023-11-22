@@ -120,10 +120,9 @@ def start_detection_yolo(cam,
             # Resize the frame to match the model input size
             #frame = cv.resize(frame, input_size)
 
-            #frame = frame[:,:,::-1]
+            frame = frame[:,:,::-1]
 
             print (frame.shape, frame.dtype)
-            cv.imwrite('frame.png', frame)
 
             # ''' Run object detection '''
             results = model(frame, conf=0.25)
