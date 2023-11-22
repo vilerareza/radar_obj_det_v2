@@ -50,6 +50,7 @@ def visualize_yolo(img, boxes, score_thres, label_dict, colors):
 
             # Get rect
             x1, y1, x2, y2 = box.xyxy[0]
+            print (x1, y1, x2, y2)
 
             # Get class name
             try:
