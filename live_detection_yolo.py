@@ -16,7 +16,7 @@ model_path = 'models_yolov8/best.pt'
 input_size = (640, 640)
 
 # Detection score threshold
-det_score_thres = 0.6
+det_score_thres = 0.5
 
 # Path to id to label file
 labelmap_path = 'labelmap.txt'
@@ -70,7 +70,7 @@ def visualize_yolo(img, boxes, score_thres, label_dict, colors):
             cv.rectangle(img, (int(x1), int(y1)), (int(x2), int(y2)), color, 2)
 
             result_text = f'{class_name}: {str(score)[:4]}'
-            text_location = (_MARGIN + y1, _MARGIN + _ROW_SIZE + x1)
+            text_location = (_MARGIN + int(y1), _MARGIN + _ROW_SIZE + int(x1))
             cv.putText(img, result_text, text_location, cv.FONT_HERSHEY_PLAIN, _FONT_SIZE, color, _FONT_THICKNESS)
             
     return img
