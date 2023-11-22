@@ -121,10 +121,10 @@ def start_detection_yolo(cam,
             frame = np.expand_dims(frame, axis=0)
 
             # ''' Run object detection '''
-            results = model(frame)
+            #results = model(frame)
 
             # Bounding boxes coordinates
-            boxes = results[0].boxes
+            #boxes = results[0].boxes
 
             # if len(boxes) > 0:
 
