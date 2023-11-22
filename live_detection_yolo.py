@@ -45,7 +45,7 @@ def visualize_yolo(img, boxes, score_thres, label_dict, colors):
 
         # Get the score
         print (box.conf)
-        score = box.conf[0][0]
+        score = box.conf[0].numpy()
         print ('SCORE', score)
         
         if score >= score_thres:
