@@ -126,27 +126,27 @@ def start_detection_yolo(cam,
             # Bounding boxes coordinates
             boxes = results[0].boxes
 
-            if len(boxes) > 0:
+            # if len(boxes) > 0:
 
-                # Draw the detection result
-                frame_ori = visualize_yolo(frame_ori, 
-                                           boxes, 
-                                           score_thres,
-                                           id2name_dict,
-                                           colors)
+            #     # Draw the detection result
+            #     frame_ori = visualize_yolo(frame_ori, 
+            #                                boxes, 
+            #                                score_thres,
+            #                                id2name_dict,
+            #                                colors)
         
-            # RGB to BGR for displaying
-            frame_ori = frame_ori[:,:,::-1]
+            # # RGB to BGR for displaying
+            # frame_ori = frame_ori[:,:,::-1]
 
-            # Display the resulting frame
-            cv.imshow('frame', frame_ori)
+            # # Display the resulting frame
+            # cv.imshow('frame', frame_ori)
 
-            # the 'q' button is set as the
-            if cv.waitKey(1) & 0xFF == ord('q'):
-                break
+            # # the 'q' button is set as the
+            # if cv.waitKey(1) & 0xFF == ord('q'):
+            #     break
 
-            t2 = time.time()
-            print (f'frame_time: {t2-t1}')
+            # t2 = time.time()
+            # print (f'frame_time: {t2-t1}')
 
         except Exception as e:
             print (e)
