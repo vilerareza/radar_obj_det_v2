@@ -50,7 +50,6 @@ def visualize_yolo(img, boxes, score_thres, label_dict, colors):
 
             # Get rect
             x1, y1, x2, y2 = box.xyxy[0]
-            print (x1, y1, x2, y2)
 
             # Get class name
             try:
@@ -68,7 +67,7 @@ def visualize_yolo(img, boxes, score_thres, label_dict, colors):
                 color = (255,255,255)
 
             # Draw bounding_box
-            cv.rectangle(img, (x1, y1), (x2, y2), color, 2)
+            cv.rectangle(img, (int(x1), int(y1)), (int(x2), int(y2)), color, 2)
 
             result_text = f'{class_name}: {str(score)[:4]}'
             text_location = (_MARGIN + y1, _MARGIN + _ROW_SIZE + x1)
