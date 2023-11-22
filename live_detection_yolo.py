@@ -44,14 +44,12 @@ def visualize_yolo(img, boxes, score_thres, label_dict, colors):
     for idx, box in enumerate(boxes):
 
         # Get the score
-        print (box.conf)
         score = box.conf[0].numpy()
-        print ('SCORE', score)
         
         if score >= score_thres:
 
             # Get rect
-            x1, y1, x2, y2 = box.xyxy[0]
+            x1, y1, x2, y2 = box.xyxy[0].numpy()
 
             # Get class name
             try:
@@ -123,7 +121,7 @@ def start_detection_yolo(cam,
             print (frame.shape)
 
             # ''' Run object detection '''
-            results = model(frame)
+            results = model(frame, conf=0.25)
 
             # Bounding boxes coordinates
             boxes = results[0].boxes
