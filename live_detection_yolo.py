@@ -116,11 +116,11 @@ def start_detection_yolo(cam,
 
             ''' Preprocess '''
             
-            frame_ori = frame_ori[:,:,::-1]
+            
             # Resize the frame to match the model input size
             frame = cv.resize(frame, input_size).astype('uint8')
 
-            
+            frame = frame[:,:,::-1]
 
             print (frame.shape)
 
