@@ -120,8 +120,10 @@ def start_detection_yolo(cam,
             frame = cv.resize(frame, input_size).astype('uint8')
             frame = np.expand_dims(frame, axis=0)
 
+            print (frame.shape)
+
             # ''' Run object detection '''
-            #results = model(frame)
+            results = model(frame)
 
             # Bounding boxes coordinates
             #boxes = results[0].boxes
