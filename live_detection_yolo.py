@@ -113,7 +113,7 @@ def start_detection_yolo(cam,
             if flip:
                 frame_ori = cv.rotate(frame_ori, cv.ROTATE_180)
 
-            frame_ori = frame_ori[:,:,::-1]
+            #frame_ori = frame_ori[:,:,::-1]
             
             frame = frame_ori.copy()
 
@@ -123,7 +123,7 @@ def start_detection_yolo(cam,
             # Resize the frame to match the model input size
             #frame = cv.resize(frame, input_size)
 
-            #frame = frame[:,:,::-1]
+            frame = frame[:,:,::-1]
 
             print (frame.shape, frame.dtype)
 
@@ -143,7 +143,7 @@ def start_detection_yolo(cam,
                                            colors)
         
             # RGB to BGR for displaying
-            # frame_ori = frame_ori[:,:,::-1]
+            frame_ori = frame_ori[:,:,::-1]
 
             # Display the resulting frame
             cv.imshow('frame', frame_ori)
