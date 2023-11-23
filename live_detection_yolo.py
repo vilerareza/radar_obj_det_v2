@@ -74,7 +74,7 @@ def visualize_yolo(img, input_size, boxes, score_thres, label_dict, colors):
             cv.rectangle(img, (int(x1*factor_w), int(y1*factor_h)), (int(x2*factor_w), int(y2*factor_h)), color, 2)
 
             result_text = f'{class_name}: {str(score)[:4]}'
-            text_location = (_MARGIN + int(y1), _MARGIN + _ROW_SIZE + int(x1))
+            text_location = (_MARGIN + int(y1*factor_h), _MARGIN + _ROW_SIZE + int(x1*factor_w))
             cv.putText(img, result_text, text_location, cv.FONT_HERSHEY_PLAIN, _FONT_SIZE, color, _FONT_THICKNESS)
             
     return img
@@ -116,10 +116,6 @@ def start_detection_yolo(cam,
             if flip:
                 frame_ori = cv.rotate(frame_ori, cv.ROTATE_180)
             
-            # Resize the frame to match the model input size
-            # frame_ori = cv.resize(frame_ori, input_size).astype('uint8')
-            # frame_ori = frame_ori[:,:,::-1]
-
             frame = frame_ori.copy()
 
             ''' Preprocess '''
