@@ -40,7 +40,10 @@ colors = {0: (0, 255, 0),
 
 
 
-def visualize_yolo(img, boxes, score_thres, label_dict, colors):
+def visualize_yolo(img, input_size, boxes, score_thres, label_dict, colors):
+
+    factor_w = img.shape[1] / input_size[0]
+    factor_h = img.shape[0] / input_size[1]
 
     for idx, box in enumerate(boxes):
 
@@ -68,7 +71,7 @@ def visualize_yolo(img, boxes, score_thres, label_dict, colors):
                 color = (255,255,255)
 
             # Draw bounding_box
-            cv.rectangle(img, (int(x1), int(y1)), (int(x2), int(y2)), color, 2)
+            cv.rectangle(img, (int(x1*factor_w), int(y1*factor_h)), (int(x2*factor_w), int(y2*factor_h)), color, 2)
 
             result_text = f'{class_name}: {str(score)[:4]}'
             text_location = (_MARGIN + int(y1), _MARGIN + _ROW_SIZE + int(x1))
@@ -113,17 +116,17 @@ def start_detection_yolo(cam,
             if flip:
                 frame_ori = cv.rotate(frame_ori, cv.ROTATE_180)
             
-            frame_ori = cv.resize(frame_ori, input_size)
+            # Resize the frame to match the model input size
+            frame_ori = cv.resize(frame_ori, input_size).astype('uint8')
             #frame_ori = frame_ori[:,:,::-1]
 
             frame = frame_ori.copy()
 
             ''' Preprocess '''
             
-            
-            # Resize the frame to match the model input size
             # frame = cv.resize(frame, input_size)
 
+            # RGB to BGR
             frame = frame[:,:,::-1]
 
             # ''' Run object detection '''
@@ -136,6 +139,7 @@ def start_detection_yolo(cam,
 
                 # Draw the detection result
                 frame_ori = visualize_yolo(frame_ori, 
+                                           input_size,
                                            boxes, 
                                            score_thres,
                                            id2name_dict,
