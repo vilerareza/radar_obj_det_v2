@@ -117,14 +117,15 @@ def start_detection_yolo(cam,
                 frame_ori = cv.rotate(frame_ori, cv.ROTATE_180)
             
             # Resize the frame to match the model input size
-            frame_ori = cv.resize(frame_ori, input_size).astype('uint8')
-            #frame_ori = frame_ori[:,:,::-1]
+            # frame_ori = cv.resize(frame_ori, input_size).astype('uint8')
+            # frame_ori = frame_ori[:,:,::-1]
 
             frame = frame_ori.copy()
 
             ''' Preprocess '''
             
-            # frame = cv.resize(frame, input_size)
+            # Resize the frame to match the model input size
+            frame = cv.resize(frame, input_size).astype('uint8')
 
             # RGB to BGR
             frame = frame[:,:,::-1]
