@@ -113,7 +113,7 @@ def start_detection_yolo(cam,
             if flip:
                 frame_ori = cv.rotate(frame_ori, cv.ROTATE_180)
             
-            #frame_ori = cv.resize(frame_ori, input_size)
+            frame_ori = cv.resize(frame_ori, input_size)
             #frame_ori = frame_ori[:,:,::-1]
 
             frame = frame_ori.copy()
