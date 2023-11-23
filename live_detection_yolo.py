@@ -121,7 +121,7 @@ def start_detection_yolo(cam,
             
             
             # Resize the frame to match the model input size
-            #frame = cv.resize(frame, input_size)
+            frame = cv.resize(frame, input_size)
 
             frame = frame[:,:,::-1]
 
