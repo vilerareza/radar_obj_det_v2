@@ -143,7 +143,7 @@ def start_detection_yolo(cam,
                                            colors)
         
             # RGB to BGR for displaying
-            frame_ori = frame_ori[:,:,::-1]
+            # frame_ori = frame_ori[:,:,::-1]
 
             # Display the resulting frame
             cv.imshow('frame', frame_ori)
