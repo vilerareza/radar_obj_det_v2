@@ -6,6 +6,30 @@ from utils import visualize, create_label_dict
 import time
 
 
+
+'''Detection model'''
+# Path to tflite model
+model_path = 'models_tflite/retinanet_resnet_fpn_640_unfreeze.tflite'
+# Model input size
+input_size = (640, 640)
+# Model type
+model_type = 'retinanet'
+if model_type not in ['efficientdet', 'retinanet']:
+    print (' Model type not supported')
+    exit()
+
+'''Detection score threshold'''
+det_score_thres = 0.6
+
+'''Path to id to label file'''
+labelmap_path = 'labelmap.txt'
+
+'''Camera type and orientation'''
+res = (640, 480)
+is_picamera = True
+flip = True
+
+
 def start_detection_efficientdet(cam, 
                     model_path,
                     input_size,
@@ -225,28 +249,6 @@ def create_detector(model_path):
 
 if __name__ == '__main__':
     
-    '''Detection model'''
-    # Path to tflite model
-    model_path = 'models_tflite/retinanet_resnet_fpn_640_unfreeze.tflite'
-    # Model input size
-    input_size = (640, 640)
-    # Model type
-    model_type = 'retinanet'
-    if model_type not in ['efficientdet', 'retinanet']:
-        print (' Model type not supported')
-        exit()
-
-    '''Detection score threshold'''
-    det_score_thres = 0.6
-    
-    '''Path to id to label file'''
-    labelmap_path = 'labelmap.txt'
-
-    '''Camera type and orientation'''
-    res = (640, 480)
-    is_picamera = True
-    flip = True
-
     '''Setting up and configure the camera'''
     # Picamera
     cam = Picamera2()

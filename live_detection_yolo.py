@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 from picamera2 import Picamera2
 import tflite_runtime.interpreter as tflite
-from utils import visualize, create_label_dict
+from utils import create_label_dict
 import time
 
 from ultralytics import YOLO
@@ -37,6 +37,7 @@ colors = {0: (0, 255, 0),
           1: (255, 50, 50),
           2: (0, 0, 255),
           3: (0, 255, 255)}
+
 
 
 def visualize_yolo(img, boxes, score_thres, label_dict, colors):
@@ -125,7 +126,7 @@ def start_detection_yolo(cam,
             print (frame.shape, frame.dtype)
 
             # ''' Run object detection '''
-            results = model(frame, conf=0.25)
+            results = model(frame, conf=score_thres)
 
             # Bounding boxes coordinates
             boxes = results[0].boxes

@@ -3,3 +3,5 @@ opencv-python
 tflite-runtime
 protobuf
 picamera2
+ultralytics
+typing_extensions
