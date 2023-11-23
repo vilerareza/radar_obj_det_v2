@@ -74,7 +74,7 @@ def visualize_yolo(img, input_size, boxes, score_thres, label_dict, colors):
             cv.rectangle(img, (int(x1*factor_w), int(y1*factor_h)), (int(x2*factor_w), int(y2*factor_h)), color, 2)
 
             result_text = f'{class_name}: {str(score)[:4]}'
-            text_location = (_MARGIN + int(y1*factor_h), _MARGIN + _ROW_SIZE + int(x1*factor_w))
+            text_location = (_MARGIN + int(x1*factor_w), _MARGIN + _ROW_SIZE + int(y1*factor_h))
             cv.putText(img, result_text, text_location, cv.FONT_HERSHEY_PLAIN, _FONT_SIZE, color, _FONT_THICKNESS)
             
     return img
